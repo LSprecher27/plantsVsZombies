@@ -9,6 +9,7 @@ const cellGap = 3;
 const gameGrid = [];
 const defenders = [];
 let defenderCost = 100;
+let numberOfResources = 300;
 
 // mouse
 const mouse = {
@@ -54,7 +55,7 @@ function createGrid() {
         }
     }
 }
-createGrid();
+createGrid(); // Continue Video at 32:37
 function handleGameGrid(){
     for (let i = 0; i < gameGrid.length; i++){
         gameGrid[i].draw();
@@ -67,17 +68,34 @@ class Defender {
     constructor(x, y){
         this.x = x;
         this.y = y;
-        this.width = cellSize - cellGap * 2;
-        this.height = cellSize - cellGap * 2;
+        this.width = cellSize;
+        this.height = cellSize;
         this.shooting = false;
-        this.shootNow = false;
         this.health = 100;
         this.projectiles = [];
-        this.timer = 0; // continue video at 27:05
+        this.timer = 0;
         
+    }
+    draw(){
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillStyle = 'gold';
+        ctx.font = '20px Arial';
+        ctx.fillText(Math.floor(this.health),this.x, this.y);
     }
 
 }
+canvas.addEventListener('click', function(){
+    const gridPositionX = mouse.x - (mouse.x % cellSize);
+    const gridPositionY = mouse.y - (mouse.y % cellSize);
+    if (gridPositionY < cellSize) return;
+    let defenderCost = 100;
+    if (numberOfResources > defenderCost){
+        defenders.push(new Defender(gridPositionX, gridPositionY));
+        numberOfResources -= defenderCost;
+    }
+
+});
 //enemies
 // resources
 // utilites
