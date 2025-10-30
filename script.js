@@ -371,7 +371,7 @@ function animate() {
 
         retryButton.style.display = 'inline';
         return;
-    } // Revised this NINE TIMES. Why? Because the engine thought it was funny to just not work for no reason
+    } // Revised this NINE TIMES. Why? Because Visual Studio Code thought it was funny to just not work for no reason
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'blue';
