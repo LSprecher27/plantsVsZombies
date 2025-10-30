@@ -76,7 +76,7 @@ class Cell {
             ctx.strokeRect(this.x, this.y, this.width, this.height);
         }
     }
-}
+} // I wouldn't even be able to tell you what this is. On second thought, it might be the individual squares of the grid. I'll get back to you on that.
 
 class Defender {
     constructor(x, y) {
@@ -101,7 +101,7 @@ class Defender {
             projectiles.push(new Projectile(this.x + 70, this.y + 70));
         }
     }
-}
+} // The defenders that the player places to stop enemies
 
 class Enemy {
     constructor(verticalPosition) {
@@ -126,7 +126,7 @@ class Enemy {
         ctx.font = '30px Arial';
         ctx.fillText(Math.floor(this.health), this.x + 15, this.y + 30);
     }
-}
+} // The enemies that will try to reach the left side of the screen
 
 class Projectile {
     constructor(x, y) {
@@ -146,7 +146,7 @@ class Projectile {
         ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
         ctx.fill();
     }
-}
+} // The bullets fired by defenders
 
 class ResourceBlock {
     constructor(x, y) {
@@ -175,7 +175,7 @@ class ResourceBlock {
             }
         }
     }
-}
+} //Little random block that will spawn and give resources when hovered over. 
 
 // Game Functions
 function createGrid() {
@@ -184,7 +184,7 @@ function createGrid() {
             gameGrid.push(new Cell(x, y));
         }
     }
-}
+} // Makes the grid for placing defenders and spawing enemies. 
 createGrid();
 
 function handleGameGrid() {
@@ -234,6 +234,7 @@ function handleEnemies() {
         if (enemies[i].x < 0) {
             gameOver = true;
         }
+        //I'm losing my mind please help me
 
         if (enemies[i].health <= 0) {
             const gainedResources = Math.floor(enemies[i].maxHealth / 10);
@@ -243,6 +244,7 @@ function handleEnemies() {
             i--;
         }
     }
+    // All work and no play makes Luke a dull boy
 
     if (frame % enemiesInterval === 0) {
         let enemiesToSpawn = score >= 100 ? 2 : 1; // spawn 2 enemies if score >= 100
@@ -323,7 +325,7 @@ function handleGameStatus() {
         ctx.fillText('Score: ' + Math.floor(score), 20, 50);
     }
 }
-
+// Loved working on the game loop, would've felt better if I started beating my head against the wall.
 function resetGame() {
     gameOver = false;
     gameStarted = true;
@@ -369,8 +371,8 @@ function animate() {
 
         retryButton.style.display = 'inline';
         return;
-    }
-
+    } // Revised this NINE TIMES. Why? Because the engine thought it was funny to just not work for no reason
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'blue';
     ctx.fillRect(0, 0, controlsBar.width, controlsBar.height);
@@ -397,7 +399,7 @@ function collision(first, second) {
         first.y > second.y + second.height ||
         first.y + first.height < second.y
     );
-}
+} // Revised this twice, still is iffy, but screw it
 
 canvas.addEventListener('click', function () {
     const gridPositionX = mouse.x - (mouse.x % cellSize);
